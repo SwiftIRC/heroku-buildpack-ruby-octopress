@@ -12,11 +12,11 @@ module LanguagePack
   def self.detect(*args)
     Instrument.instrument 'detect' do
       Dir.chdir(args.first)
-
-    pack = [ Octopress, Jekyll, NoLockfile, Rails4, Rails3, Rails2, Rack, Ruby ].detect do |klass|
-      klass.use?
+      pack = [ Octopress, Jekyll, NoLockfile, Rails4, Rails3, Rails2, Rack, Ruby ].detect do |klass|
+        klass.use?
+      end
+      return pack ? pack.new(*args) : nil
     end
-    return pack ? pack.new(*args) : nil
   end
 end
 
